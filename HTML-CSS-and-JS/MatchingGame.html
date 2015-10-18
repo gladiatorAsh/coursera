@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <title>Matching game</title>
+    <style>
+        img {
+            position: absolute;
+        }
+
+        div {
+            position: absolute;
+            height: 500px;
+            width: 480px;
+        }
+
+        #rightSide {
+            left: 500px;
+            border-left: 1px solid black;
+        }
+    </style>
+</head>
+<body onload="LoadGame()">
+    <h1>Matching game</h1>
+    <p>Click on the extra smiling face on the left</p>
+
+    <div id="leftSide">
+
+    </div>
+    <div id="rightSide">
+    </div>
+    <script>
+        // Main Game method
+        function LoadGame() {
+            var numberOfFaces = 5;
+            var leftSide = document.getElementById("leftSide");
+            //Outer Dimensions of game area
+            var divHeight = 500;
+            var divWidth = 480;
+            var rightSide = document.getElementById("rightSide");
+            var body = document.getElementsByTagName("body")[0];
+            // If user clicks anything else
+            body.onclick = function () {
+                alert("Game over!");
+                body = null;
+                leftSide.lastChild = null;
+                ClearGameArea();
+            };
+
+            GenerateFaces();
+
+
+            function GenerateFaces() {
+                var temp = numberOfFaces;
+                while (temp > 0) {
+                    var img = document.createElement("img");
+                    img.src = "http://home.cse.ust.hk/~rossiter/mooc/matching_game/smile.png";
+                    //Get height less than game area height
+                    img.style.top = GetRandomHeight() + "px";
+                    //Get height less than game area width
+                    img.style.left = GetRandomWidth() + "px";
+                    leftSide.appendChild(img);
+                    temp--;
+                }
+
+                CloneRightSide();
+            }
+
+            function CloneRightSide() {
+                var leftSideImages = leftSide.cloneNode(true);
+                var lastChild = leftSideImages.lastChild;
+
+                leftSideImages.removeChild(lastChild);
+
+                //Bind event to last node of left side
+                BindEvent(leftSide);
+                //Duplicate left side after binding event
+                rightSide.appendChild(leftSideImages);
+
+            }
+
+            function BindEvent(node) {
+                node.lastChild.onclick = function nextLevel(event) {
+                    event.stopPropagation();
+
+                    ClearGameArea();
+
+                    //Generate new faces 5 more than last time
+                    numberOfFaces += 5;
+                    GenerateFaces();
+                }
+            }
+
+            function ClearGameArea() {
+                DeleteNodes(leftSide);
+                DeleteNodes(rightSide);
+            }
+
+
+            function DeleteNodes(node) {
+                var fc = node.firstChild;
+                while (fc) {
+                    node.removeChild(fc);
+                    fc = node.firstChild;
+                }
+            }
+
+            function GetRandomHeight() {
+                return Math.floor(Math.random() * (divHeight - 50)) * 1;
+            }
+
+            function GetRandomWidth() {
+                return Math.floor(Math.random() * (divWidth - 100)) * 1;
+            }
+        }
+    </script>
+</body>
+</html>
