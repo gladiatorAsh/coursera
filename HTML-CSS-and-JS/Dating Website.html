@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Interactive form</title>
+    <style>
+        fieldset {
+            background: lightyellow;
+            border: 10px solid yellow;
+            margin-bottom: 10px;
+            width: 720px;
+        }
+
+        label {
+            width: 180px;
+            display: inline-block;
+            text-align: right;
+            vertical-align: top;
+            font: bold 12 px verdana;
+            font-weight: bold;
+        }
+
+        label:hover {
+            font-size: 40px;
+        }
+
+        textarea {
+            width: 360px;
+            height: 50px;
+        }
+
+        .wd_auto {
+            width: auto;
+        }
+
+        .al_center {
+            text-align: center;
+        }
+
+        .wd_40 {
+            width: 40px;
+        }
+
+        .bg_brown {
+            background-color: brown;
+        }
+
+        .bg_purple {
+            background-color: purple;
+        }
+
+        .pad_129_left {
+            padding-left: 129px;
+        }
+
+        .pad_22_left {
+            padding-left: 22px;
+        }
+
+        div {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <form enctype="multipart/form-data" target="https://ihome.ust.hk/~rossiter/cgi-bin/show_everything.php">
+        <h1>Please Enter Your Details For Our Dating Website! </h1>
+        <fieldset>
+            <legend>Your Face</legend>
+            <div><label for="file_upload">Your image :</label><input name="file_upload" type="file" required /> </div>
+            <div><label for="img_avatar">Image preview : </label><img name="img_avatar" id="preview" /></div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Your General Details</legend>
+            <div><label for="name">Name :</label><input type="text" name="name" required placeholder="Your full name" /> </div>
+            <div><label class="wd_auto pad_129_left" for="gender">Gender:</label><input type="radio" name="gender" value="Male" required /><span>Male</span> <input type="radio" name="gender" value="Female" required /><span>Female</span></div>
+            <div><label for="age">Age : </label> <input name="age" type="number" required /></div>
+            <div><label for="birth_date">Date of birth : </label> <input name="birth_date" type="date" /></div>
+            <div><label for="color">Favorite color : </label> <input name="color" type="color" /></div>
+            <div><label>Which country: </label> <select name="color"><optgroup><option value=""> </option><option value="India">India</option><option value="Brazil">Brazil</option><option value="China">China</option><option value="Russia">Russia</option><option value="USA">USA</option></optgroup></select></div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Your Indicators</legend>
+            <div><label for="height">Height:</label><label class="al_center wd_40 bg_brown">Short</label><input name="height" type="range" min="0" max="100"><label class="al_center wd_40 bg_purple">Tall</label></div>
+            <div><label for="salary">Salary:</label><label class="al_center wd_40 bg_brown">Poor</label><input name="salary" type="range" min="0" max="100"><label class="al_center wd_40 bg_purple">Rich</label></div>
+        </fieldset>
+        <fieldset>
+            <legend>Your Contact information</legend>
+            <div><label for="email">Email :</label><input name="email" type="email" required /> </div>
+            <div><label for="mobile">Mobile :</label><input name="mobile" type="text" /> </div>
+            <div><label for="address">Address:</label><textarea name="address"></textarea></div>
+            <div><label class="wd_auto pad_22_left" for="contact">Method to contact you:</label><input type="checkbox" value="email" name="contact"><span>Email</span><input type="checkbox" value="whatsapp" name="contact"><span>Whatsapp</span><input type="checkbox" name="contact" value="inappchat"><span>In-app chat</span></div>
+        </fieldset>
+        <input type="submit" name="submit" />
+    </form>
+    <script src="https://www.cse.ust.hk/~rossiter/dating_web_site.js"></script>
+</body>
+</html>
