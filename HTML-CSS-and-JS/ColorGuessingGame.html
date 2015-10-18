@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script>
+        //Create an array of colours color[]
+        //The main function StartGame
+        //Generate a random number from 0 to color.length-1 GenerateRandom()
+        //Assign this color to target.
+        //Ask user to guess color GetUserInput()
+        //If guess is correct change the background to same color ChangeColor()
+        //Else show appropriate error message and ask him to guess again. ShowError()
+
+        //Global game object
+        var GameObj = {};
+        //Init game
+        Init()
+
+        //Purpose is to init game elements
+        function Init() {
+
+            var color = ['Aqua', 'Bisque', 'Black', 'Blue', 'BlueViolet', 'Brown', 'CadetBlue', 'Crimson', 'Cyan', 'DarkGreen', 'DeepPink'
+            , 'Fuchsia', 'Gold', 'GoldenRod', 'Gray', 'Green', 'Indigo', 'LightBlue', 'Lime', 'Magenta', 'Maroon', 'Navy', 'Pink', 'Plum',
+            'Red', 'Salmon', 'SpringGreen', 'SteelBlue', 'Turquoise', 'Violet', 'Yellow']
+
+            GameObj.Color = color;
+
+            var message = 'I am thinking of one of these colors: \n\n\n';
+            for (var i = 0; i < color.length; i++) {
+                message += color[i] + ",";
+
+            }
+            message = message.slice(0, message.length - 1);
+
+            message += "\n\n\n What color I am thinking of right now?";
+            GameObj.Message = message;
+            StartGame();
+        }
+
+        function Clear() {
+
+            GameObj.CorrectChoice = '';
+            GameObj.UserChoice = '';
+            GameObj.ErrorMsg = '';
+
+        }
+
+        function ChangeColor() {
+
+            myBody = document.getElementsByTagName("body")[0];
+
+
+            myBody.style.background = GameObj.CorrectChoice;
+        }
+
+        //Main game function
+        function StartGame() {
+            var successMsg = '';
+            var attempt = 0;
+            while (true) {
+                attempt++;
+                Clear();
+
+                var random = GenerateRandom(0, GameObj.Color.length - 1);
+                GameObj.CorrectChoice = GameObj.Color[random];
+
+                alert(GameObj.CorrectChoice);
+                var userChoice = prompt(GameObj.Message);
+                if (!userChoice) {
+
+                    alert('You have chosen to end the game');
+                    break;
+                }
+
+                GameObj.UserChoice = userChoice;
+                if (IsCorrectGuess()) {
+                    ChangeColor();
+                    successMsg = " You guessed correctly !! \n You guessed in " + attempt + " attempts.\n "+
+                    "You can see the color in the background.";
+                    alert(successMsg);
+                    return true;
+                    break;
+                }
+                else {
+
+                    if (GameObj.ErrorMsg === undefined || GameObj.ErrorMsg === null || GameObj.ErrorMsg === '') {
+                        if (GameObj.CorrectChoice > GameObj.UserChoice) {
+
+                            alert('Your input is alphabetically lower than mine!');
+
+                        }
+                        else {
+
+                            alert('Your input is alphabetically higher than mine!');
+                        }
+                    }
+                    else {
+
+                        alert(GameObj.ErrorMsg);
+                    }
+
+                }
+            }
+        }
+
+        //Purpose is to check if guess is correct
+        function IsCorrectGuess() {
+
+            if (CheckError()) {
+                return false;
+            };
+
+            return GameObj.UserChoice === GameObj.CorrectChoice;
+
+        }
+
+        //Check if input is in array
+        function CheckError() {
+
+            if (GameObj.Color.indexOf(GameObj.UserChoice) === -1) {
+                GameObj.ErrorMsg = 'I do not recognize that color!';
+
+            }
+
+        }
+
+
+
+        //Purpose is to generate Random numbers from start to parameter passed
+        function GenerateRandom(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+    </script>
+</body>
+</html>
