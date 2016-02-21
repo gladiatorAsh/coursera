@@ -1,0 +1,80 @@
+Non-Personalized Recommenders
+
+Aims:
+
+Value
+Drawbacks
+Aggregated Opinion Recommenders
+Basic Product Ass Recommenders
+Examples
+
+
+
+Story of Zagat- Restaurant recos
+Readers submit recos abt sevice, decor, food, cost
+Secret formula- Mean of all ratings *10
+
+Story of Conde Nast Travellers- Cruise recos
+Tallies the Percentage of people who rate a cruise as good or excellent 
+
+Similar Trip advisor ,BillBoard are all non-personalized  recommendations
+
+Averages can be misleading. They can occur for discrepancies in the first but not in the second.
+
+Averages are useful when you have a large num of rtings to control outliers
+
+Averages lack Context hence non personalied product recos
+
+People who are X are also Y
+First reate dataset
+User pROFILES not good for ketchups
+Transaction data not good for follow up orders
+User Profiles but time constrained
+
+
+Computing Profiles 
+
+%= (X and Y)/Y but tis suffers from banana trap
+
+Issue occurs when Y is very popular
+
+
+Another formula- 
+
+% =(X and Y)/X divided by (!X and Y)/!X
+
+Formula focusses on Increase in Y associated with X
+
+Lift metric: P(X AND Y)/(P(X)*P(Y))
+
+
+Zagat guide keeps getting worse
+
+mediocre restaurants with good scores and excellent restaurants with mediocre restaurants
+
+Why?
+
+Self Selection bias
+Increased diversity of users
+
+Non -personalized averages can be effective in right application
+
+Product associations need context
+
+Still face challenges in a clustered diverese env
+
+
+
+Preferences and Ratings
+
+To recommend you need data like what users like, what goes together.
+
+Aim: How data is collected , types of data can be collected , what data is being used to provide recos
+
+
+
+		
+
+
+
+
